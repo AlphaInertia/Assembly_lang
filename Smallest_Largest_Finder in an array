@@ -1,0 +1,31 @@
+org 100h
+mov si,1100h
+mov ax,0000h
+mov bx,0000h
+mov al,[si]
+mov bl,[si]
+inc si
+
+compare: cmp al,[si]
+jc great
+inc si
+dec cl
+jnz compare
+jmp down
+
+great: cmp bl,[si]
+jc large
+inc si
+dec cl
+jnz compare
+jmp down
+
+large: mov bl,[si]
+inc si
+dec cl
+jnz compare
+jmp down
+
+down: mov [1200h],al
+mov [1220h],bl
+hlt
